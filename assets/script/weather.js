@@ -1,5 +1,5 @@
 function getCurrentWeather(city) {
-    fetch("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=43802440c0c6de0f332937c0fa83470c")
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=43802440c0c6de0f332937c0fa83470c")
     .then(function(response) {
         if (response.ok) {
             response.json()
@@ -20,7 +20,7 @@ function getCurrentWeather(city) {
   };
 
   function getForecastWeather(lat,lon,city){
-    fetch("http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=hourly,minutely&units=imperial&appid=43802440c0c6de0f332937c0fa83470c")
+    fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=hourly,minutely&units=imperial&appid=43802440c0c6de0f332937c0fa83470c")
     .then(function(response) {
         if (response.ok) {
             response.json()
