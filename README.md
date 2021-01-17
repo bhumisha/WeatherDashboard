@@ -19,4 +19,17 @@ You can view weather for searched city using below link https://bhumisha.github.
 
 This project codebase is written in HTML,CSS and JQuery and also we have used moment.js,JQuery and bootstrap third party libraries and server side api calls. Main logic is written in JQuery. Js file contains DOM manipulation, conditional statements / loop statement / validations to modularised code we have used functions. LocalStorage is also used to store search cities.
 
+To get current and Forecast weather, two server side api calls have beem made from  from https://openweathermap.org/api 
+Current Weather Data API
+One Call API
+
 The following screen demonstrates the application functionality: 
+
+Search Panel
+![](assets/images/searchPanel.png)
+
+Searched city store to localhost and show active in list
+![](assets/images/latestSearchedCity.png)
+
+See weather from listed city
+![](assets/images/listItemClicked.png)
