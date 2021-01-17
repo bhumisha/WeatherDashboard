@@ -139,3 +139,38 @@ function getCurrentWeather(city) {
    
   }
 
+
+var nameInputEl = $("#cityname");
+var formSubmitHandler = function(event) {
+    event.preventDefault();
+    console.log(event);
+    var cityname = nameInputEl.val().trim();
+    if (cityname) {
+        getCurrentWeather(cityname);
+        nameInputEl.text = "";
+    } 
+    else {
+        alert("Please enter a City");
+    }
+
+    if (cityname) {
+        //Reading localstorage list if any
+        var cityList = JSON.parse(localStorage.getItem('weatherCityList')) || [];
+        var isCityExist = false;
+        for(var i=0;i<cityList.length;i++)
+        {
+            if(cityname === cityList[i]){
+                isCityExist = true;
+            }
+        }
+        if(!isCityExist){
+            cityList.push(cityname);
+        }
+        //Save tasklist to localstorage
+        localStorage.setItem('weatherCityList',JSON.stringify(cityList));
+        loadLocalStorageCities();
+    }
+  };
+  
+  
+  SearchBtn.addEventListener("click", formSubmitHandler);
