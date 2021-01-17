@@ -1,3 +1,25 @@
+function loadLocalStorageCities()
+  {
+      //Reading localstorage list if any
+    var cityList = JSON.parse(localStorage.getItem('weatherCityList')) || [];
+    var citiContainerEL = $("#cities-container");
+    citiContainerEL.html('');
+     // create a span element to hold repository name
+     for(var i=0;i<cityList.length ; i++){
+        var titleEl = $('<p>');
+        titleEl.attr("cityName",cityList[i]);
+        titleEl.addClass("list-group-item");
+        titleEl.text(cityList[i]);
+        citiContainerEL.append(titleEl); 
+     }
+  }
+  loadLocalStorageCities();
+
+  $(document).on('click', '.list-group-item', function(event) {
+    event.preventDefault();
+    getCurrentWeather($(this).attr("cityName"));
+  
+  }); 
 
 function getCurrentWeather(city) {
     fetch("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=43802440c0c6de0f332937c0fa83470c")
