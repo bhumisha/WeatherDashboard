@@ -14,19 +14,22 @@ body {
 
 .jumbotron {
   text-align: center;
-  color: var(--colorBlack);
-  margin-bottom:0;
-  padding: 0px;
+  background-color: black;
+  height:75px;
+  border-radius: 0px;
+  padding-top: 10px
   
+}
+label{
+  font-weight: bold;
+  font-size: 20px;
 }
 h2{
   background-color: var(--colorBlack);
   padding: 5px 5px;
   color: white;
   padding-left: 0rem;
-}
-.list-group{
-  padding-top: 10px;
+  text-align: center;
 }
 .card-body{
   margin-right: 30px;
@@ -47,13 +50,23 @@ h2{
   font-size: 20px;
   transition: all .3s ease-in-out;
 }
+/* CSS for Searched City List */
 
+.list-group{
+  max-height: 500px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  overflow:scroll;
+  -webkit-overflow-scrolling: touch;
+}
+/* 
 .list-group-item:hover{
   font-size: 20px;
   transition: all .3s ease-in-out;
   cursor: pointer;
-}
+} */
 
+/* CSS for UX Index Backgroudn*/
 .moderateUv {
   background-color: yellow;
   padding: 0px 10px;
