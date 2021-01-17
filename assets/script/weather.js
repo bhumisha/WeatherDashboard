@@ -82,6 +82,7 @@ function loadCurrentWeather(weatherData,inputCity){
 
     //Create HTML Controls
     var currentWeatherCardEl = $('#currentWeatherDiv');
+    currentWeatherCardEl.addClass("card");
     currentWeatherCardEl.html('');
 
     var currentCityH4El = $('<h3>')
