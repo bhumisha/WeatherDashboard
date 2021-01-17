@@ -1,7 +1,7 @@
 # WeatherDashboard
 Weather Dashboard shows current weather data and forecast weather data for 5 days for search City/State/Country. It is developed using third party server side api called https://openweathermap.org/api
 
-Weather Dashboard mainly shows Temparature , Humidity , WindSpeed and UV index for selected city. UltraViolet Index color indicate whether the weather conditions are favorable(green), moderate(yellow), or severe(red)
+Weather Dashboard mainly shows Temparature , Humidity , WindSpeed and UV index and a weather icon which represent weather conditions for selected city. UltraViolet Index color indicate whether the weather conditions are favorable(green), moderate(yellow), or severe(red)
 
 Search Cities are maintained in LocalStorage and also displayed in list for User for easy access.
 
