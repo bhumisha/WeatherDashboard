@@ -1,0 +1,71 @@
+:root{
+  --colorBlack: #000000;
+  }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 2;
+}
+#searchPanel{
+  background-color:#efefef;
+  padding-bottom: 10px;
+}
+
+.jumbotron {
+  text-align: center;
+  color: var(--colorBlack);
+  margin-bottom:0;
+  padding: 0px;
+  
+}
+h2{
+  background-color: var(--colorBlack);
+  padding: 5px 5px;
+  color: white;
+  padding-left: 0rem;
+}
+.list-group{
+  padding-top: 10px;
+}
+.card-body{
+  margin-right: 30px;
+}
+
+#currentWeatherDiv{
+  margin: 10px 10px;
+  padding: 20px 20px;
+}
+.forecast{
+  border-radius: 15px;
+  border: 1px solid  var(--colorBlack);;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  
+}
+.btn-primary i:hover {
+  font-size: 20px;
+  transition: all .3s ease-in-out;
+}
+
+.list-group-item:hover{
+  font-size: 20px;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+}
+
+.moderateUv {
+  background-color: yellow;
+  padding: 0px 10px;
+}
+
+.highUV {
+  background-color: rgba(236, 20, 20, 0.856);
+  padding: 0px 10px;
+}
+
+.lowUV {
+  background-color:rgb(28, 202, 28);
+  padding: 0px 10px;
+
+}

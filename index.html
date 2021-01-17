@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Import Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Import Moment.js here -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  <title>Weater Dashboard</title>
+</head>
+<body>
+  <header class="jumbotron">
+    <h2 d-flex align-items-center>Weather Dashboard</h2>
+  </header>
+  <main>
+    <div class="container-fluid d-flex">
+        <div id="searchPanel" class="col-sm-2">
+              <label>Search for a City:</label>
+              <span class="d-flex">
+                <input name="cityname" id="cityname" type="text" autofocus="true"  />
+                <button id="SearchBtn" class="btn btn-primary"><i class="fa fa-search"></i></button>
+              </span>
+              <div id="cities-container" class="list-group"></div>
+        </div>
+      <div class="col-sm-10">
+        <div id="weatherPanel" class="position-relative">
+          <div id="currentWeatherDiv" class="card"></div>
+          <div id="forecastWeatherDiv" >
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="./assets/script/weather.js"></script>
+
+</body>
+</html>
