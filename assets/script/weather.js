@@ -4,10 +4,10 @@ function getCurrentWeather(city) {
         if (response.ok) {
             response.json()
             .then(function(data) 
-            {
+            { 
                 storeCitiesToLocalStorage(city);
-                getForecastWeather(data.coord.lat,data.coord.lon,city);
-                
+                getForecastWeather(data.coord.lat,data.coord.lon,city); 
+
             });
         } else {
             alert("Error: " + response.statusText);
@@ -37,7 +37,7 @@ function getCurrentWeather(city) {
         alert("Unable to connect to Weather app" + error);
       });
   }
-function loadLocalStorageCities()
+function loadLocalStorageCities(cityName)
   {
       //Reading localstorage list if any
     var cityList = JSON.parse(localStorage.getItem('weatherCityList')) || [];
@@ -49,17 +49,19 @@ function loadLocalStorageCities()
         titleEl.attr('href','#');
         titleEl.attr("cityName",cityList[i]);
         titleEl.addClass("list-group-item list-group-item-action");
+        if(cityName===cityList[i]){
+            titleEl.addClass('active');
+        }
         titleEl.text(cityList[i]);
         citiContainerEL.append(titleEl); 
      }
   }
-  loadLocalStorageCities();
+loadLocalStorageCities('');
 
 $(document).on('click', '.list-group-item', function(event) {
     event.preventDefault();
     $(this).siblings(".active").removeClass('active');
     getCurrentWeather($(this).attr("cityName"));
-
     $(this).addClass('active');
 }); 
 
@@ -89,7 +91,7 @@ function loadCurrentWeather(weatherData,inputCity){
     temparatureSpanEl.html("Temparature: " + weatherData.current.temp + " &#8457 ");
     humiditySpanEl.text("Humidity: "+ weatherData.current.humidity + "%");
     windSpeedSpanEl.text("Wind Speed: " +  weatherData.current.wind_speed + " MPH");
-    var iconurl = "http://openweathermap.org/img/w/" + weatherData.current.weather[0].icon + ".png";
+    var iconurl = "https://openweathermap.org/img/w/" + weatherData.current.weather[0].icon + ".png";
     weathericon.attr('src', iconurl);
     weathericon.attr('alt','weather icon');
 
@@ -143,7 +145,7 @@ function loadForeCastWeather(foreCastData){
         
             var currentDate = moment.unix(dailyObj.dt).format("MM/DD/YYYY");
             h5CardTitleEl.text(currentDate);
-            var iconurl = "http://openweathermap.org/img/w/" + dailyObj.weather[0].icon + ".png";
+            var iconurl = "https://openweathermap.org/img/w/" + dailyObj.weather[0].icon + ".png";
             imgCardImageEl.attr('src', iconurl);
             imgCardImageEl.attr('alt','weather icon');
 
@@ -160,26 +162,24 @@ function loadForeCastWeather(foreCastData){
         }
     }
 
-
 }
 
-
-var nameInputEl = $("#cityname");
+var searchCityInputEl = $("#cityname");
 var formSubmitHandler = function(event) {
     event.preventDefault();
     console.log(event);
-    var cityname = nameInputEl.val().trim();
+    var cityname = searchCityInputEl.val().trim();
     if (cityname) {
+        searchCityInputEl.val('');
         getCurrentWeather(cityname);
-        nameInputEl.text = "";
+        
     } 
     else {
         alert("Please enter a City");
     }
-
-  };
+};
   
-  function storeCitiesToLocalStorage(cityName){
+function storeCitiesToLocalStorage(cityName){
         //Reading localstorage list if any
         var cityList = JSON.parse(localStorage.getItem('weatherCityList')) || [];
         var isCityExist = false;
@@ -191,9 +191,10 @@ var formSubmitHandler = function(event) {
         }
         if(!isCityExist){
             cityList.push(cityName);
+            localStorage.setItem('weatherCityList',JSON.stringify(cityList));
+            loadLocalStorageCities(cityName);
         }
         //Save tasklist to localstorage
-        localStorage.setItem('weatherCityList',JSON.stringify(cityList));
-        loadLocalStorageCities();
-  }
-  SearchBtn.addEventListener("click", formSubmitHandler);
+        
+}
+SearchBtn.addEventListener("click", formSubmitHandler);
