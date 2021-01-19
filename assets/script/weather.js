@@ -24,6 +24,7 @@ function getCurrentWeather(city) {
 
 //fetch forecast weather using below api with latitude / longitude param.
 function getForecastWeather(lat,lon,city){
+    var forecastData;
     fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=hourly,minutely&units=imperial&appid=43802440c0c6de0f332937c0fa83470c")
     .then(function(response) {
         if (response.ok) {
@@ -31,10 +32,20 @@ function getForecastWeather(lat,lon,city){
             .then(function(data) 
             {
                 //Load main panel for current day weather
-                loadCurrentWeather(data,city)
+                forecastData = data;
+                fetch("https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=43802440c0c6de0f332937c0fa83470c")
+                .then(function(uviresponse) {
+                    if (uviresponse.ok) {
+                        uviresponse.json()
+                        .then(function(uvidata){
+                            loadCurrentWeather(forecastData,uvidata.value,city)
+                        });
+                    }
+                });
+                
 
                 //Load forecast weather for 5 days
-                loadForeCastWeather(data);
+                loadForeCastWeather(forecastData);
             });
         } else {
             alert("Error: " + response.statusText);
@@ -78,7 +89,7 @@ $(document).on('click', '.list-group-item', function(event) {
 
 
 //Load main panel for current day weather
-function loadCurrentWeather(weatherData,inputCity){
+function loadCurrentWeather(weatherData,uviValue, inputCity){
 
     //Create HTML Controls
     var currentWeatherCardEl = $('#currentWeatherDiv');
@@ -113,13 +124,13 @@ function loadCurrentWeather(weatherData,inputCity){
     weathericon.attr('alt','weather icon');
 
     //Check UVIndex
-    if(weatherData.current.uvi < 3)
+    if(uviValue < 3)
     {
-        uvIndex.html("UV Index: " + "<p class='lowUV' >  " +  weatherData.current.uvi + "</p>");
-    }else if(data.value >=3 && data.value <=5){
-        uvIndex.html("UV Index: " + "<p class='moderateUv' >  " + weatherData.current.uvi + "</p>");
+        uvIndex.html("UV Index: " + "<p class='lowUV' >  " +  uviValue + "</p>");
+    }else if(uviValue >=3 && uviValue <=5){
+        uvIndex.html("UV Index: " + "<p class='moderateUv' >  " + uviValue + "</p>");
     }else{
-        uvIndex.html("UV Index: " + "<p class='highUV' >  " +  weatherData.current.uvi + "</p>");
+        uvIndex.html("UV Index: " + "<p class='highUV' >  " +  uviValue + "</p>");
     }
 
     //Add all controls to main Div
